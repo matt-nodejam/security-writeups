@@ -1,8 +1,11 @@
 # security-writeups
 
-Public writeups of security research by **Matt Jesc** — independent security
+Public writeups of security research by **Matt Jesc ([matt-nodejam](https://github.com/matt-nodejam))** — independent security
 researcher at [Nodejam](https://github.com/matt-nodejam), working from
 Sweden/Nordics.
+
+These writeups are also rendered as an indexed blog at
+[matt-nodejam.github.io](https://matt-nodejam.github.io).
 
 **Focus areas:** offensive security, memory corruption in media parsers and
 network infrastructure, model/file-format parsing surfaces, and measurement
