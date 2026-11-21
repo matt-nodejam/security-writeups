@@ -28,11 +28,17 @@ artifact referenced is public.
 
 | Date | Writeup | One-line |
 |---|---|---|
+| 2026-11 | [The fix moved the bug: a complete incomplete-fix arc on FLTK (CVE-2026-116724)](writeups/2026-11-the-fix-moved-the-bug-fltk-cve-2026-116724.md) | The fix for CVE-2026-116724 closed the allocation overflow but left the row-pointer wrap; reported with a tested fix shape, a two-site fix shipped in ~49h, independent ASan replay verified clean, closed cooperatively in ~56h. |
 | 2026-11 | [From issue to advisory: the vvdec campaign](writeups/2026-11-from-issue-to-advisory-the-vvdec-campaign.md) | Four credited GitHub security advisories in the Fraunhofer HHI VVC/H.266 decoder — one HIGH use-after-free write and three out-of-bounds reads — from fuzz harness to publication. |
 | 2026-11 | [Six malformed ClientHello forms nginx still parses: the ssl_preread hardening note](writeups/2026-11-six-malformed-clienthello-forms-nginx-ssl-preread.md) | A differential lab for `ngx_stream_ssl_preread_module` after the CVE-2026-123640 fixes: where preread is still more lenient than the TLS stacks it fronts. |
 | 2026-11 | [CVE-2026-123007 replay — coming soon](writeups/2026-11-cve-2026-123007-replay-coming-soon.md) | Placeholder: a replay study of the nginx HTTP/2 flow-control heap overflow, in progress. |
 
 ## Public record index
+
+**FLTK (BMP image loader, incomplete-fix follow-up)** — verification and cooperative close:
+
+- [fltk/fltk#1647](https://github.com/fltk/fltk/issues/1647) — Fl_BMP_Image: the #1632 fix closes the allocation overflow, the row pointer still wraps (filed 2026-11-19, fix `a28e392` 2026-11-21, verified and closed 2026-11-21)
+- [CVE-2026-116724](https://nvd.nist.gov/vuln/detail/CVE-2026-116724) — the published advisory (HaiND, VulnCheck CNA) our incomplete-fix report follows up on
 
 **vvdec (VVC/H.266 decoder, Fraunhofer HHI)** — reporter credit on all four:
 
