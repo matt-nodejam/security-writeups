@@ -125,7 +125,7 @@ affected). The maintainer added them as co-credited reporter on our advisory.
 Independent confirmation from two methods — fuzzing and reading — is exactly
 what you want on a small edge-case bug.
 
-**Outcome:** filed privately 2026-11-12; fix merged 2026-11-17; published
+**Outcome:** filed privately 2026-11-11; fix merged 2026-11-17; published
 2026-11-20 at Medium with dual reporter credit.
 
 ### 3. The subtle one: LMCS reshaping overread after an SPS change (GHSA-qgqj-f693-2fqc)
@@ -149,7 +149,7 @@ re-titled and re-scoped the advisory (CWE-125, CVSS 4.3), merged the fix
 (PR #472) on 2026-11-18, and left the credit intact. When a maintainer
 improves your root cause, the report was worth filing.
 
-**Outcome:** filed privately 2026-11-12; accepted 2026-11-17; fix merged
+**Outcome:** filed privately 2026-11-11; accepted 2026-11-17; fix merged
 2026-11-18; published 2026-11-20 at Medium.
 
 ### 4. The reading one: wrap-around desync, stale PPS (GHSA-f7mj-r2mj-rfvh)
@@ -197,10 +197,9 @@ bypass.
 | Date (2026) | Event |
 |---|---|
 | Nov 8 | Target scouted; canary certified both directions; overnight campaign; fillGrey UAF filed privately (evening) |
-| Nov 11 | Maintainer accepts the UAF report; corrects root cause |
-| Nov 12 | 1,167-artifact triage → `getNalUnitType` and LMCS reshaping advisories filed privately |
-| Nov 13 | Wrap-desync posted as public issue #469 |
-| Nov 14 | Fix PR #470 opened; our 5-variant no-bypass battery on the fix build; LMCS PoC streams delivered in-thread |
+| Nov 11 | Maintainer accepts the UAF report; corrects root cause; the 1,167-artifact triage lands `getNalUnitType` and LMCS reshaping, both filed privately |
+| Nov 13 | Wrap-desync posted as public issue #469; fix PR #470 opened |
+| Nov 14 | Our 5-variant no-bypass battery on the fix build; LMCS PoC streams delivered in-thread |
 | Nov 16 | FillGrey fix (PR #468) merged |
 | Nov 17 | Fix PRs #458 and #470 merged; LMCS advisory accepted |
 | Nov 18 | LMCS root cause unified; fix (PR #472) merged |
