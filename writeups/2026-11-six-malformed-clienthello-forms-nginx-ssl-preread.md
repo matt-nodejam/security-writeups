@@ -3,15 +3,15 @@
 *2026-11 · Matt Jesc, Nodejam*
 
 **TL;DR:** After F5's 1.31.9 security wave fixed
-[CVE-2026-123640](https://nvd.nist.gov/vuln/detail/CVE-2026-123640) —
-forged `ngx_stream_ssl_preread_module` variables from a crafted ClientHello —
+[CVE-2026-123640](https://nvd.nist.gov/vuln/detail/CVE-2026-123640),
+forged `ngx_stream_ssl_preread_module` variables from a crafted ClientHello,
 we asked a narrower question: *after* the fixes, how strict is `ssl_preread`
 compared with the TLS stacks it typically fronts? A local differential lab
 (nginx 1.31.9 with `ssl_preread` map routing, OpenSSL and Go backends, 17
 hand-built ClientHellos) found six malformed forms preread still parses and
 routes on while both backends refuse them. This is a hardening-consistency
-note, not a vulnerability report — no memory-safety issue, no demonstrated
-bypass — and it is filed publicly as
+note, not a vulnerability report: no memory-safety issue, no demonstrated
+bypass, and it is filed publicly as
 [nginx/nginx#2013](https://github.com/nginx/nginx/issues/2013).
 
 All reproduction steps were verified hands-on against pinned versions; every
@@ -44,7 +44,7 @@ Everything ran locally on loopback; no third-party system was contacted.
 - **Backends:** OpenSSL (via Python 3.12 `ssl`, SNI callback logging) and
   Go 1.27.4 `crypto/tls` (`GetConfigForClient` logging). GnuTLS was not
   tested.
-- **Corpus:** 17 hand-built ClientHello records — 6 controls and 11 variants.
+- **Corpus:** 17 hand-built ClientHello records, 6 controls and 11 variants.
   Two of the controls are the exact shapes 1.31.9's fixes decline; both were
   verified declined, confirming the published fixes work as intended in our
   build.
@@ -74,7 +74,7 @@ in [the issue](https://github.com/nginx/nginx/issues/2013).
 5. **Legacy `client_version` never sanity-checked** when `supported_versions`
    is absent (any two bytes accepted into the version state).
 6. **Trailing-dot SNI** (`name.example.`) misses exact-match maps by one byte
-   and falls to the default pool — a normalization footgun, suggested as a
+   and falls to the default pool, a normalization footgun, suggested as a
    documentation note rather than a parser change.
 
 ## The 17-row result table
@@ -102,11 +102,11 @@ t15 ALPN list two protocols   | allowed.local    | allowed-pool  | accept-parse 
 t16 supver garbage only       | allowed.local    | allowed-pool  | reject unsupported_protocol        | accept-parse; SupportedVersions=[31354] exposed; reject at negotiation
 ```
 
-The row worth staring at is **t04**: SNI list `[b,a]` with `a` allowlisted —
+The row worth staring at is **t04**: SNI list `[b,a]` with `a` allowlisted:
 preread routes on `b` (first entry) while the list contains an allowlisted
-name. No case in the corpus produced a routed-on-X / served-Y divergence —
+name. No case in the corpus produced a routed-on-X / served-Y divergence:
 every lenient form is either parsed identically by backend and preread, or
-refused by the backend — which is exactly why this is filed as a
+refused by the backend, which is exactly why this is filed as a
 hardening-consistency note and not a vulnerability.
 
 ## Suggested hardening
