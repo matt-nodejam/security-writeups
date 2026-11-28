@@ -9,13 +9,13 @@ we asked a narrower question: *after* the fixes, how strict is `ssl_preread`
 compared with the TLS stacks it typically fronts? A local differential lab
 (nginx 1.31.9 with `ssl_preread` map routing, OpenSSL and Go backends, 17
 hand-built ClientHellos) found six malformed forms preread still parses and
-routes on while both backends refuse them. This is a hardening-consistency
+routes on: four of them both backends refuse, and two more they accept. This is a hardening-consistency
 note, not a vulnerability report: no memory-safety issue, no demonstrated
 bypass, and it is filed publicly as
 [nginx/nginx#2013](https://github.com/nginx/nginx/issues/2013).
 
 All reproduction steps were verified hands-on against pinned versions; every
-artifact referenced is public.
+referenced artifact is public or reconstructable from public material.
 
 ## Context
 
@@ -133,5 +133,5 @@ discretion.
 ---
 
 *All reproduction steps verified hands-on against pinned versions; every
-artifact referenced is public. All testing was local, on loopback interfaces
+referenced artifact is public or reconstructable from public material. All testing was local, on loopback interfaces
 only; no third-party system was contacted.*

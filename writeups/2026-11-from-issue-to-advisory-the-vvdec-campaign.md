@@ -13,7 +13,7 @@ how the target was picked, how the harness was qualified, how each bug was
 found and verified, and what the maintainers did with the reports.
 
 All reproduction steps were verified hands-on against pinned versions; every
-artifact referenced is public.
+referenced artifact is public or reconstructable from public material.
 
 ## The four advisories
 
@@ -31,8 +31,8 @@ appeared on the records.)
 
 On 8 November 2026, vvdec ticked every box on our target screen:
 
-- **Fresh security history.** An October 2026 batch of five CVEs had just
-  landed, and at least one was still live on the newest release tag (v3.2.1),
+- **Fresh security history.** An October 2026 batch of five advisories, four of them with CVE IDs, had
+  just landed, and at least one was still live on the newest release tag (v3.2.1),
   meaning the class of bug (parameter-set confusion driving memory errors)
   had recent, reproducible precedent in the code.
 - **No upstream fuzzing.** vvdec had no OSS-Fuzz integration at the time, and
@@ -216,5 +216,6 @@ fast and well. This campaign reports bugs; they shipped the fixes.
 ---
 
 *All reproduction steps verified hands-on against pinned versions; every
-artifact referenced is public. Testing was confined to locally built
-software; no third-party production system was contacted.*
+referenced artifact is public or reconstructable from public material. Testing was confined to locally built
+software; no third-party production system was contacted. The PoC
+bitstreams went to the maintainers through the private advisory process.*
